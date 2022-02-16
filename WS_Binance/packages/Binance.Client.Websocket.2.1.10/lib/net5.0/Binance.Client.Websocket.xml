@@ -1,0 +1,1504 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Binance.Client.Websocket</name>
+    </assembly>
+    <members>
+        <member name="T:Binance.Client.Websocket.BinanceValues">
+            <summary>
+            Binance static urls
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.BinanceValues.ApiWebsocketUrl">
+            <summary>
+            Main Binance url to websocket API
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Client.BinanceClientStreams">
+            <summary>
+            All provided streams.
+            You need to set subscriptions in advance (via method `SetSubscriptions()` on BinanceWebsocketClient)
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Client.BinanceClientStreams.PongStream">
+            <summary>
+            Response stream to every ping request
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Client.BinanceClientStreams.TradesStream">
+            <summary>
+            Trades stream - emits every executed trade on Binance
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Client.BinanceClientStreams.AggregateTradesStream">
+            <summary>
+            Chunk of trades - emits grouped trades together
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Client.BinanceClientStreams.OrderBookPartialStream">
+            <summary>
+            Partial order book stream - emits small snapshot of the order book
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Client.BinanceClientStreams.OrderBookDiffStream">
+            <summary>
+            Order book difference stream - emits small snapshot of the order book
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Client.BinanceClientStreams.FundingStream">
+            <summary>
+            Mark price and funding rate stream - emits mark price and funding rate for a single symbol pushed every 3 seconds or every second
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Client.BinanceClientStreams.BookTickerStream">
+            <summary>
+             The best bid or ask's price or quantity in real-time for a specified symbol
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Client.BinanceClientStreams.KlineStream">
+            <summary>
+            The Kline/Candlestick subscription, provide symbol and chart intervals
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Client.BinanceClientStreams.MiniTickerStream">
+            <summary>
+            Mini-ticker specified symbol statistics for the previous 24hrs
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Client.BinanceWebsocketClient">
+            <summary>
+            Binance websocket client.
+            Use method `Connect()` to start client and subscribe to channels.
+            And `Streams` to subscribe. 
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Client.BinanceWebsocketClient.#ctor(Binance.Client.Websocket.Communicator.IBinanceCommunicator)">
+            <inheritdoc />
+        </member>
+        <member name="P:Binance.Client.Websocket.Client.BinanceWebsocketClient.Streams">
+            <summary>
+            Provided message streams
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Client.BinanceWebsocketClient.Dispose">
+            <summary>
+            Cleanup everything
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Client.BinanceWebsocketClient.PrepareSubscriptions(System.Uri,Binance.Client.Websocket.Subscriptions.SubscriptionBase[])">
+            <summary>
+            Combine url with subscribed streams
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Client.BinanceWebsocketClient.SetSubscriptions(Binance.Client.Websocket.Subscriptions.SubscriptionBase[])">
+            <summary>
+            Combine url with subscribed streams and set it into communicator.
+            Then you need to call communicator.Start() or communicator.Reconnect()
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Client.BinanceWebsocketClient.Send``1(``0)">
+            <summary>
+            Serializes request and sends message via websocket communicator. 
+            It logs and re-throws every exception. 
+            </summary>
+            <param name="request">Request/message to be sent</param>
+        </member>
+        <member name="T:Binance.Client.Websocket.Communicator.IBinanceCommunicator">
+            <inheritdoc />
+        </member>
+        <member name="T:Binance.Client.Websocket.Files.BinanceFileCommunicator">
+            <summary>
+            Communicator that loads raw backtest data from file and streams
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Json.ArrayConverter">
+            <summary>
+            Convert JSON array into object
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Json.ArrayPropertyAttribute">
+            <summary>
+            JSON array property
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Json.ArrayPropertyAttribute.Index">
+            <summary>
+            Index of the item
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Json.ArrayPropertyAttribute.#ctor(System.Int32)">
+            <summary>
+            Create array property attribute with specified index
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Json.BinanceJsonSerializer">
+            <summary>
+            Binance preconfigured JSON serializer
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Json.BinanceJsonSerializer.Settings">
+            <summary>
+            JSON settings
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Json.BinanceJsonSerializer.Serializer">
+            <summary>
+            Serializer instance
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Json.BinanceJsonSerializer.Deserialize``1(System.String)">
+            <summary>
+            Deserialize string into object
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Json.BinanceJsonSerializer.Serialize(System.Object)">
+            <summary>
+            Serialize object into JSON string
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Json.BinanceStringEnumConverter">
+            <summary>
+            Enum converter - convert enum as string
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Json.BinanceStringEnumConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Read JSON string and convert to enum
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Json.UnixDateTimeConverter">
+            <summary>
+            Converter between unix date time (milliseconds as long type) and DateTime
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Json.UnixDateTimeConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Serialize DateTime into Unix milliseconds
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Json.UnixDateTimeConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Deserialize Unix milliseconds into DateTime
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.AggregateTrades.AggregatedTradeResponse">
+            <summary>
+            Trades bin response, contains all trades executed in a selected time range
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.AggregateTrades.AggregateTrade">
+            <summary>
+            Aggregated info about executed trades
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.AggregateTrades.AggregateTrade.Symbol">
+            <summary>
+            The symbol the trade was for
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.AggregateTrades.AggregateTrade.AggregatedTradeId">
+            <summary>
+            The id of this aggregated trade
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.AggregateTrades.AggregateTrade.Price">
+            <summary>
+            The price of the trades
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.AggregateTrades.AggregateTrade.Quantity">
+            <summary>
+            The combined quantity of the trades
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.AggregateTrades.AggregateTrade.FirstTradeId">
+            <summary>
+            The first trade id in this aggregation
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.AggregateTrades.AggregateTrade.LastTradeId">
+            <summary>
+            The last trade id in this aggregation
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.AggregateTrades.AggregateTrade.TradeTime">
+            <summary>
+            The time of the trades
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.AggregateTrades.AggregateTrade.IsBuyerMaker">
+            <summary>
+            Whether the buyer was the maker
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.AggregateTrades.AggregateTrade.IsMatch">
+            <summary>
+            Was the trade the best price match?
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.AggregateTrades.AggregateTrade.Side">
+            <summary>
+            Side of the trade
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.Books.OrderBookDiff">
+            <summary>
+            Order book difference
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Books.OrderBookDiff.Symbol">
+            <summary>
+            The symbol the update is for
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Books.OrderBookDiff.LastUpdateId">
+            <summary>
+            The ID of the last update (final)
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Books.OrderBookDiff.FirstUpdateId">
+            <summary>
+            The id of this update, can be synced with REST API to update the order book
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Books.OrderBookDiff.Bids">
+            <summary>
+            The list of bids
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Books.OrderBookDiff.Asks">
+            <summary>
+            The list of asks
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.Books.OrderBookDiffResponse">
+            <summary>
+            Order book difference response
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.Books.OrderBookLevel">
+            <summary>
+            One level of the order book
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Books.OrderBookLevel.Price">
+            <summary>
+            The price of this order book level
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Books.OrderBookLevel.Quantity">
+            <summary>
+            The quantity of this price in the order book
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.Books.OrderBookPartial">
+            <summary>
+            Partial order book
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Books.OrderBookPartial.Symbol">
+            <summary>
+            The symbol the update is for
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Books.OrderBookPartial.LastUpdateId">
+            <summary>
+            The ID of the last update
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Books.OrderBookPartial.Bids">
+            <summary>
+            Bid levels
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Books.OrderBookPartial.Asks">
+            <summary>
+            Asks levels
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.Books.OrderBookPartialResponse">
+            <summary>
+            Partial order book response
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Responses.Books.OrderBookPartialResponse.StreamFakeSnapshot(Binance.Client.Websocket.Responses.Books.OrderBookPartial,Binance.Client.Websocket.Communicator.IBinanceCommunicator)">
+            <summary>
+            Stream snapshot manually via communicator
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.BookTickers.BookTicker">
+            <summary>
+             Info the best bid or ask's price or quantity
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.BookTickers.BookTicker.OrderBookUpdateId">
+            <summary>
+            order book updateId
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.BookTickers.BookTicker.Symbol">
+            <summary>
+            The symbol 
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.BookTickers.BookTicker.BestBidPrice">
+            <summary>
+            The best bid price
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.BookTickers.BookTicker.BestBidQty">
+            <summary>
+            The best bid quantity
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.BookTickers.BookTicker.BestAskPrice">
+            <summary>
+            Thr best ask price
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.BookTickers.BookTicker.BestAskQty">
+            <summary>
+            The best ask quantity
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.Kline.Kline">
+            <summary>
+            The current klines/candlestick
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.StartTime">
+            <summary>
+            Kline start time
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.CloseTime">
+            <summary>
+            Kline close time
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.Interval">
+            <summary>
+            Interval
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.FirstTradeId">
+            <summary>
+            First trade ID
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.LastTradeId">
+            <summary>
+            Last trade ID
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.OpenPrice">
+            <summary>
+            Open price
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.ClosePrice">
+            <summary>
+            Close price
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.HighPrice">
+            <summary>
+            High price
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.LowPrice">
+            <summary>
+            Low price
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.BaseAssetVolume">
+            <summary>
+            Base asset volume
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.NumberTrades">
+            <summary>
+            Number of trades
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.IsClose">
+            <summary>
+            Is this kline closed?
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.QuoteAssetVolume">
+            <summary>
+            Quote asset volume
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.TakerBuyBaseAssetVolume">
+            <summary>
+            Taker buy base asset volume
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.TakerBuyQuoteAssetVolume">
+            <summary>
+            Taker buy quote asset volume
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Kline.Kline.Ignore">
+            <summary>
+            Ignore
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.MarkPrice.Funding">
+            <summary>
+            Mark price and funding rate for a single symbol pushed every 3 seconds or every second.
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MarkPrice.Funding.Symbol">
+            <summary>
+            The symbol the trade was for
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MarkPrice.Funding.MarkPrice">
+            <summary>
+            The id of this aggregated trade
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MarkPrice.Funding.IndexPrice">
+            <summary>
+            The price of the trades
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MarkPrice.Funding.FundingRate">
+            <summary>
+            The combined quantity of the trades
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MarkPrice.Funding.NextFundingTime">
+            <summary>
+            The time of the trades
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.MessageBase">
+            <summary>
+            Base class for every message/data
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MessageBase.Event">
+            <summary>
+            The type of the event
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MessageBase.EventTime">
+            <summary>
+            The time the event happened
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.MiniTicker.MiniTicker">
+            <summary>
+            /// Mini-ticker specified symbol statistics for the previous 24hrs
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MiniTicker.MiniTicker.Symbol">
+            <summary>
+            The symbol the trade was for
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MiniTicker.MiniTicker.ClosePrice">
+            <summary>
+            Close price
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MiniTicker.MiniTicker.OpenPrice">
+            <summary>
+            Open price
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MiniTicker.MiniTicker.HighPrice">
+            <summary>
+            High price
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MiniTicker.MiniTicker.LowPrice">
+            <summary>
+            Low price
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MiniTicker.MiniTicker.BaseAssetVolume">
+            <summary>
+            Total traded base asset volume
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.MiniTicker.MiniTicker.QuoteAssetVolume">
+            <summary>
+            Total traded quote asset volume
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.PongResponse">
+            <summary>
+            Pong response
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.PongResponse.Message">
+            <summary>
+            Received pong message
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.ResponseBase`1">
+            <summary>
+            Base message for every response
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.ResponseBase`1.Stream">
+            <summary>
+            Unique stream name.
+            Could be "bnbbtc@trade", "bnbbtc@depth", etc.
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.ResponseBase`1.Data">
+            <summary>
+            Returned data
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.Trades.Trade">
+            <summary>
+            Info about executed trade
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Trades.Trade.Symbol">
+            <summary>
+            The symbol the trade was for
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Trades.Trade.TradeId">
+            <summary>
+            The id of this aggregated trade
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Trades.Trade.Price">
+            <summary>
+            The price of the trades
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Trades.Trade.Quantity">
+            <summary>
+            The combined quantity of the trades
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Trades.Trade.BuyerOrderId">
+            <summary>
+            The first trade id in this aggregation
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Trades.Trade.SellerOrderId">
+            <summary>
+            The last trade id in this aggregation
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Trades.Trade.TradeTime">
+            <summary>
+            The time of the trades
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Trades.Trade.IsBuyerMaker">
+            <summary>
+            Whether the buyer was the maker
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Trades.Trade.IsMatch">
+            <summary>
+            Was the trade the best price match?
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Responses.Trades.Trade.Side">
+            <summary>
+            Side of the trade
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.Trades.TradeResponse">
+            <summary>
+            Trades response
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Responses.Trades.TradeSide">
+            <summary>
+            Defines trade side - buy or sell
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Responses.Trades.TradeSide.Buy">
+            <summary>
+            Somebody bought something
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Responses.Trades.TradeSide.Sell">
+            <summary>
+            Somebody sold something
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Subscriptions.AggregateTradeSubscription">
+            <summary>
+            Aggregate trade subscription, provide symbol (ethbtc, bnbbtc, etc)
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Subscriptions.AggregateTradeSubscription.#ctor(System.String)">
+            <summary>
+            Aggregate trade subscription, provide symbol (ethbtc, bnbbtc, etc)
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.AggregateTradeSubscription.Channel">
+            <inheritdoc />
+        </member>
+        <member name="T:Binance.Client.Websocket.Subscriptions.BookTickerSubscription">
+            <summary>
+            The best bid or ask's price or quantity for a specified symbol (ethbtc, bnbbtc, etc)
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Subscriptions.BookTickerSubscription.#ctor(System.String)">
+            <summary>
+            The best bid or ask's price or quantity for a specified symbol (ethbtc, bnbbtc, etc)
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Subscriptions.FundingSubscription">
+            <summary>
+            Mark price and funding subscription, provide symbol (ethbtc, bnbbtc, etc)
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Subscriptions.FundingSubscription.#ctor(System.String)">
+            <summary>
+            Trade subscription, provide symbol (ethbtc, bnbbtc, etc)
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.FundingSubscription.Channel">
+            <inheritdoc />
+        </member>
+        <member name="T:Binance.Client.Websocket.Subscriptions.KlineSubscription">
+            <summary>
+            The Kline/Candlestick subscription, provide symbol and chart intervals
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Subscriptions.KlineSubscription.#ctor(System.String,System.String)">
+            <summary>
+            The Kline/Candlestick subscription, provide symbol and chart intervals
+            </summary>
+            <param name="symbol"></param>
+            <param name="interval">Target interval, valid are
+            1m, 3m, 5m, 15m, 30m, 1h, 2h, 4h, 6h, 8h, 12h, 1d, 3d, 1w, 1M</param>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.KlineSubscription.Channel">
+            <inheritdoc />
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.KlineSubscription.StreamName">
+            <inheritdoc />
+        </member>
+        <member name="T:Binance.Client.Websocket.Subscriptions.MiniTickerSubscription">
+            <summary>
+            Mini-ticker specified symbol statistics for the previous 24hrs
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Subscriptions.MiniTickerSubscription.#ctor(System.String)">
+            <summary>
+            Mini-ticker specified symbol statistics for the previous 24hrs
+            </summary>
+            <param name="symbol"></param>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.MiniTickerSubscription.Channel">
+            <inheritdoc />
+        </member>
+        <member name="T:Binance.Client.Websocket.Subscriptions.OrderBookDiffSubscription">
+            <summary>
+            Order book difference subscription.
+            It will return only difference, you need to load snapshot in advance. 
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Subscriptions.OrderBookDiffSubscription.#ctor(System.String)">
+            <summary>
+            Diff order book subscription, provide symbol (ethbtc, bnbbtc, etc)
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.OrderBookDiffSubscription.Channel">
+            <inheritdoc />
+        </member>
+        <member name="T:Binance.Client.Websocket.Subscriptions.OrderBookPartialSubscription">
+            <summary>
+            Partial order book subscription, provide symbol (ethbtc, bnbbtc, etc) and levels
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Subscriptions.OrderBookPartialSubscription.#ctor(System.String,System.Int32)">
+            <summary>
+            Partial order book subscription, provide symbol (ethbtc, bnbbtc, etc) and levels
+            </summary>
+            <param name="symbol">ethbtc, bnbbtc, etc</param>
+            <param name="levels">Target levels, valid are 5, 10, or 20</param>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.OrderBookPartialSubscription.Levels">
+            <summary>
+            Target levels, valid are 5, 10, or 20.
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.OrderBookPartialSubscription.Channel">
+            <inheritdoc />
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.OrderBookPartialSubscription.StreamName">
+            <inheritdoc />
+        </member>
+        <member name="T:Binance.Client.Websocket.Subscriptions.SimpleSubscriptionBase">
+            <summary>
+            Base class for every simple subscription (just symbol + channel)
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Subscriptions.SimpleSubscriptionBase.#ctor(System.String)">
+            <summary>
+            Create simple subscription for provided symbol
+            </summary>
+            <param name="symbol"></param>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.SimpleSubscriptionBase.Symbol">
+            <summary>
+            Target symbol (bnbbtc, ethbtc, etc)
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.SimpleSubscriptionBase.Channel">
+            <summary>
+            Target channel (trade, aggTrade, etc)
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.SimpleSubscriptionBase.StreamName">
+            <inheritdoc />
+        </member>
+        <member name="T:Binance.Client.Websocket.Subscriptions.SubscriptionBase">
+            <summary>
+            Base class for every subscription
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.SubscriptionBase.StreamName">
+            <summary>
+            Unique stream name to subscribe
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Subscriptions.TradeSubscription">
+            <summary>
+            Trade subscription, provide symbol (ethbtc, bnbbtc, etc)
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Subscriptions.TradeSubscription.#ctor(System.String)">
+            <summary>
+            Trade subscription, provide symbol (ethbtc, bnbbtc, etc)
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Subscriptions.TradeSubscription.Channel">
+            <inheritdoc />
+        </member>
+        <member name="T:Binance.Client.Websocket.Utils.BinanceTime">
+            <summary>
+            Utils for time
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Utils.BinanceTime.UnixBase">
+            <summary>
+            Base Unix time (1.1.1970)
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Utils.BinanceTime.NowMs">
+            <summary>
+            Return current total Unix milliseconds
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Utils.BinanceTime.ConvertToTime(System.Int64)">
+            <summary>
+            Convert Unix milliseconds into DateTime
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Validations.BnbValidations.ValidateInput(System.String,System.String)">
+            <summary>
+            It throws <exception cref="T:Binance.Client.Websocket.Exceptions.BinanceBadInputException"></exception> if value is null or empty/white spaces
+            </summary>
+            <param name="value">The value to be validated</param>
+            <param name="name">Input parameter name</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Validations.BnbValidations.ValidateInput``1(``0,System.String)">
+            <summary>
+            It throws <exception cref="T:Binance.Client.Websocket.Exceptions.BinanceBadInputException"></exception> if value is null
+            </summary>
+            <param name="value">The value to be validated</param>
+            <param name="name">Input parameter name</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Validations.BnbValidations.ValidateInputCollection``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            It throws <exception cref="T:Binance.Client.Websocket.Exceptions.BinanceBadInputException"></exception> if collection is null or collection is empty
+            </summary>
+            <param name="collection">The collection to be validated</param>
+            <param name="name">Input parameter name</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Validations.BnbValidations.ValidateInput(System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            It throws <exception cref="T:Binance.Client.Websocket.Exceptions.BinanceBadInputException"></exception> if value is not in specified range
+            </summary>
+            <param name="value">The value to be validated</param>
+            <param name="name">Input parameter name</param>
+            <param name="minValue">Minimal value of input</param>
+            <param name="maxValue">Maximum value of input</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Validations.BnbValidations.ValidateInput(System.Int64,System.String,System.Int64,System.Int64)">
+            <summary>
+            It throws <exception cref="T:Binance.Client.Websocket.Exceptions.BinanceBadInputException"></exception> if value is not in specified range
+            </summary>
+            <param name="value">The value to be validated</param>
+            <param name="name">Input parameter name</param>
+            <param name="minValue">Minimal value of input</param>
+            <param name="maxValue">Maximum value of input</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Validations.BnbValidations.ValidateInput(System.Double,System.String,System.Double,System.Double)">
+            <summary>
+            It throws <exception cref="T:Binance.Client.Websocket.Exceptions.BinanceBadInputException"></exception> if value is not in specified range
+            </summary>
+            <param name="value">The value to be validated</param>
+            <param name="name">Input parameter name</param>
+            <param name="minValue">Minimal value of input</param>
+            <param name="maxValue">Maximum value of input</param>
+        </member>
+        <member name="T:Binance.Client.Websocket.Websockets.BinanceWebsocketCommunicator">
+            <inheritdoc cref="T:Websocket.Client.WebsocketClient" />
+        </member>
+        <member name="M:Binance.Client.Websocket.Websockets.BinanceWebsocketCommunicator.#ctor(System.Uri,System.Func{System.Net.WebSockets.ClientWebSocket})">
+            <inheritdoc />
+        </member>
+        <member name="T:Binance.Client.Websocket.Logging.ILog">
+            <summary>
+                Simple interface that represent a logger.
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.ILog.Log(Binance.Client.Websocket.Logging.LogLevel,System.Func{System.String},System.Exception,System.Object[])">
+            <summary>
+                Log a message the specified log level.
+            </summary>
+            <param name="logLevel">The log level.</param>
+            <param name="messageFunc">The message function.</param>
+            <param name="exception">An optional exception.</param>
+            <param name="formatParameters">Optional format parameters for the message generated by the messagefunc. </param>
+            <returns>true if the message was logged. Otherwise false.</returns>
+            <remarks>
+                Note to implementers: the message func should not be called if the loglevel is not enabled
+                so as not to incur performance penalties.
+                To check IsEnabled call Log with only LogLevel and check the return value, no event will be written.
+            </remarks>
+        </member>
+        <member name="T:Binance.Client.Websocket.Logging.ILogProvider">
+            <summary>
+            Represents a way to get a <see cref="T:Binance.Client.Websocket.Logging.Logger"/>
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.ILogProvider.GetLogger(System.String)">
+            <summary>
+            Gets the specified named logger.
+            </summary>
+            <param name="name">Name of the logger.</param>
+            <returns>The logger reference.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.ILogProvider.OpenNestedContext(System.String)">
+            <summary>
+            Opens a nested diagnostics context. Not supported in EntLib logging.
+            </summary>
+            <param name="message">The message to add to the diagnostics context.</param>
+            <returns>A disposable that when disposed removes the message from the context.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.ILogProvider.OpenMappedContext(System.String,System.Object,System.Boolean)">
+            <summary>
+            Opens a mapped diagnostics context. Not supported in EntLib logging.
+            </summary>
+            <param name="key">A key.</param>
+            <param name="value">A value.</param>
+            <param name="destructure">Determines whether to call the destructor or not.</param>
+            <returns>A disposable that when disposed removes the map from the context.</returns>
+        </member>
+        <member name="T:Binance.Client.Websocket.Logging.LogExtensions">
+            <summary>
+                Extension methods for the <see cref="T:Binance.Client.Websocket.Logging.ILog"/> interface.
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.IsDebugEnabled(Binance.Client.Websocket.Logging.ILog)">
+            <summary>
+                Check if the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Debug"/> log level is enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to check with.</param>
+            <returns>True if the log level is enabled; false otherwise.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.IsErrorEnabled(Binance.Client.Websocket.Logging.ILog)">
+            <summary>
+                Check if the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Error"/> log level is enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to check with.</param>
+            <returns>True if the log level is enabled; false otherwise.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.IsFatalEnabled(Binance.Client.Websocket.Logging.ILog)">
+            <summary>
+                Check if the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Fatal"/> log level is enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to check with.</param>
+            <returns>True if the log level is enabled; false otherwise.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.IsInfoEnabled(Binance.Client.Websocket.Logging.ILog)">
+            <summary>
+                Check if the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Info"/> log level is enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to check with.</param>
+            <returns>True if the log level is enabled; false otherwise.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.IsTraceEnabled(Binance.Client.Websocket.Logging.ILog)">
+            <summary>
+                Check if the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Trace"/> log level is enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to check with.</param>
+            <returns>True if the log level is enabled; false otherwise.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.IsWarnEnabled(Binance.Client.Websocket.Logging.ILog)">
+            <summary>
+                Check if the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Warn"/> log level is enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to check with.</param>
+            <returns>True if the log level is enabled; false otherwise.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Debug(Binance.Client.Websocket.Logging.ILog,System.Func{System.String})">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Debug"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="messageFunc">The message function.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Debug(Binance.Client.Websocket.Logging.ILog,System.String)">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Debug"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Debug(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Debug"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Debug(Binance.Client.Websocket.Logging.ILog,System.Exception,System.String,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Debug"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="exception">The exception.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.DebugFormat(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Debug"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.DebugException(Binance.Client.Websocket.Logging.ILog,System.String,System.Exception)">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Debug"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.DebugException(Binance.Client.Websocket.Logging.ILog,System.String,System.Exception,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Debug"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Error(Binance.Client.Websocket.Logging.ILog,System.Func{System.String})">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Error"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="messageFunc">The message function.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Error(Binance.Client.Websocket.Logging.ILog,System.String)">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Error"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Error(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Error"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Error(Binance.Client.Websocket.Logging.ILog,System.Exception,System.String,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Error"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="exception">The exception.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.ErrorFormat(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Error"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.ErrorException(Binance.Client.Websocket.Logging.ILog,System.String,System.Exception,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Error"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Fatal(Binance.Client.Websocket.Logging.ILog,System.Func{System.String})">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Fatal"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="messageFunc">The message function.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Fatal(Binance.Client.Websocket.Logging.ILog,System.String)">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Fatal"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Fatal(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Fatal"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Fatal(Binance.Client.Websocket.Logging.ILog,System.Exception,System.String,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Fatal"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="exception">The exception.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.FatalFormat(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Fatal"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.FatalException(Binance.Client.Websocket.Logging.ILog,System.String,System.Exception,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Fatal"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Info(Binance.Client.Websocket.Logging.ILog,System.Func{System.String})">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Info"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="messageFunc">The message function.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Info(Binance.Client.Websocket.Logging.ILog,System.String)">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Info"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Info(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Info"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Info(Binance.Client.Websocket.Logging.ILog,System.Exception,System.String,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Info"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="exception">The exception.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.InfoFormat(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Info"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.InfoException(Binance.Client.Websocket.Logging.ILog,System.String,System.Exception,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Info"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Trace(Binance.Client.Websocket.Logging.ILog,System.Func{System.String})">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Trace"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="messageFunc">The message function.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Trace(Binance.Client.Websocket.Logging.ILog,System.String)">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Trace"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Trace(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Trace"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Trace(Binance.Client.Websocket.Logging.ILog,System.Exception,System.String,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Trace"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="exception">The exception.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.TraceFormat(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Trace"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.TraceException(Binance.Client.Websocket.Logging.ILog,System.String,System.Exception,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Trace"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Warn(Binance.Client.Websocket.Logging.ILog,System.Func{System.String})">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Warn"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="messageFunc">The message function.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Warn(Binance.Client.Websocket.Logging.ILog,System.String)">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Warn"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Warn(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Warn"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.Warn(Binance.Client.Websocket.Logging.ILog,System.Exception,System.String,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Warn"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="exception">The exception.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.WarnFormat(Binance.Client.Websocket.Logging.ILog,System.String,System.Object[])">
+            <summary>
+                Logs a message at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Warn"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogExtensions.WarnException(Binance.Client.Websocket.Logging.ILog,System.String,System.Exception,System.Object[])">
+            <summary>
+                Logs an exception at the <see cref="F:Binance.Client.Websocket.Logging.LogLevel.Warn"/> log level, if enabled.
+            </summary>
+            <param name="logger">The <see cref="T:Binance.Client.Websocket.Logging.ILog"/> to use.</param>
+            <param name="message">The message.</param>
+            <param name="exception">The exception.</param>
+            <param name="args">Optional format parameters for the message.</param>
+        </member>
+        <member name="T:Binance.Client.Websocket.Logging.LogLevel">
+            <summary>
+                The log level.
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Logging.LogLevel.Trace">
+            <summary>
+            Trace
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Logging.LogLevel.Debug">
+            <summary>
+            Debug
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Logging.LogLevel.Info">
+            <summary>
+            Info
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Logging.LogLevel.Warn">
+            <summary>
+            Warn
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Logging.LogLevel.Error">
+            <summary>
+            Error
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Logging.LogLevel.Fatal">
+            <summary>
+            Fatal
+            </summary>
+        </member>
+        <member name="T:Binance.Client.Websocket.Logging.LogProvider">
+            <summary>
+            Provides a mechanism to set the <see cref="T:Binance.Client.Websocket.Logging.ILogProvider" />.
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProvider.SetCurrentLogProvider(Binance.Client.Websocket.Logging.ILogProvider)">
+            <summary>
+            Sets the current log provider.
+            </summary>
+            <param name="logProvider">The log provider.</param>
+        </member>
+        <member name="P:Binance.Client.Websocket.Logging.LogProvider.IsDisabled">
+            <summary>
+            Gets or sets a value indicating whether this is logging is disabled.
+            </summary>
+            <value>
+            <c>true</c> if logging is disabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Binance.Client.Websocket.Logging.LogProvider.OnCurrentLogProviderSet">
+            <summary>
+            Sets an action that is invoked when a consumer of your library has called SetCurrentLogProvider. It is 
+            important that hook into this if you are using child libraries (especially ilmerged ones) that are using
+            LibLog (or other logging abstraction) so you adapt and delegate to them.
+            <see cref="M:Binance.Client.Websocket.Logging.LogProvider.SetCurrentLogProvider(Binance.Client.Websocket.Logging.ILogProvider)"/> 
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProvider.For``1">
+            <summary>
+            Gets a logger for the specified type.
+            </summary>
+            <typeparam name="T">The type whose name will be used for the logger.</typeparam>
+            <returns>An instance of <see cref="T:Binance.Client.Websocket.Logging.ILog"/></returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProvider.GetCurrentClassLogger">
+            <summary>
+            Gets a logger for the current class.
+            </summary>
+            <returns>An instance of <see cref="T:Binance.Client.Websocket.Logging.ILog"/></returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProvider.GetLogger(System.Type,System.String)">
+            <summary>
+            Gets a logger for the specified type.
+            </summary>
+            <param name="type">The type whose name will be used for the logger.</param>
+            <param name="fallbackTypeName">If the type is null then this name will be used as the log name instead</param>
+            <returns>An instance of <see cref="T:Binance.Client.Websocket.Logging.ILog"/></returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProvider.GetLogger(System.String)">
+            <summary>
+            Gets a logger with the specified name.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>An instance of <see cref="T:Binance.Client.Websocket.Logging.ILog"/></returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProvider.OpenNestedContext(System.String)">
+            <summary>
+            Opens a nested diagnostics context.
+            </summary>
+            <param name="message">A message.</param>
+            <returns>An <see cref="T:System.IDisposable"/> that closes context when disposed.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProvider.OpenMappedContext(System.String,System.Object,System.Boolean)">
+            <summary>
+            Opens a mapped diagnostics context.
+            </summary>
+            <param name="key">A key.</param>
+            <param name="value">A value.</param>
+            <param name="destructure">A optional paramater to indicate message should be destructured.</param>
+            <returns>An <see cref="T:System.IDisposable"/> that closes context when disposed.</returns>
+        </member>
+        <member name="T:Binance.Client.Websocket.Logging.LogProviders.LibLogException">
+            <summary>
+            Exception thrown by LibLog.
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProviders.LibLogException.#ctor(System.String)">
+            <summary>
+            Initializes a new LibLogException with the specified message.
+            </summary>
+            <param name="message">The message</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProviders.LibLogException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new LibLogException with the specified message and inner exception.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="inner">The inner exception.</param>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProviders.LogMessageFormatter.SimulateStructuredLogging(System.Func{System.String},System.Object[])">
+            <summary>
+                Some logging frameworks support structured logging, such as serilog. This will allow you to add names to structured
+                data in a format string:
+                For example: Log("Log message to {user}", user). This only works with serilog, but as the user of LibLog, you don't
+                know if serilog is actually
+                used. So, this class simulates that. it will replace any text in {curly braces} with an index number.
+                "Log {message} to {user}" would turn into => "Log {0} to {1}". Then the format parameters are handled using regular
+                .net string.Format.
+            </summary>
+            <param name="messageBuilder">The message builder.</param>
+            <param name="formatParameters">The format parameters.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase">
+            <summary>
+                Base class for specific log providers.
+            </summary>
+        </member>
+        <member name="F:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase.ErrorInitializingProvider">
+            <summary>
+                Error message should initializing the log provider fail.
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase.#ctor">
+            <summary>
+                Initialize an instance of the <see cref="T:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase"/> class by initializing the references
+                to the nested and mapped diagnostics context-obtaining functions.
+            </summary>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase.GetLogger(System.String)">
+            <summary>
+            Gets the specified named logger.
+            </summary>
+            <param name="name">Name of the logger.</param>
+            <returns>The logger reference.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase.OpenNestedContext(System.String)">
+            <summary>
+            Opens a nested diagnostics context. Not supported in EntLib logging.
+            </summary>
+            <param name="message">The message to add to the diagnostics context.</param>
+            <returns>A disposable that when disposed removes the message from the context.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase.OpenMappedContext(System.String,System.Object,System.Boolean)">
+            <summary>
+            Opens a mapped diagnostics context. Not supported in EntLib logging.
+            </summary>
+            <param name="key">A key.</param>
+            <param name="value">A value.</param>
+            <param name="destructure">Determines whether to call the destructor or not.</param>
+            <returns>A disposable that when disposed removes the map from the context.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase.GetOpenNdcMethod">
+            <summary>
+                Returns the provider-specific method to open a nested diagnostics context.
+            </summary>
+            <returns>A provider-specific method to open a nested diagnostics context.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase.GetOpenMdcMethod">
+            <summary>
+                Returns the provider-specific method to open a mapped diagnostics context.
+            </summary>
+            <returns>A provider-specific method to open a mapped diagnostics context.</returns>
+        </member>
+        <member name="T:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase.OpenNdc">
+            <summary>
+                Delegate defining the signature of the method opening a nested diagnostics context.
+            </summary>
+            <param name="message">The message to add to the diagnostics context.</param>
+            <returns>A disposable that when disposed removes the message from the context.</returns>
+        </member>
+        <member name="T:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase.OpenMdc">
+            <summary>
+                Delegate defining the signature of the method opening a mapped diagnostics context.
+            </summary>
+            <param name="key">A key.</param>
+            <param name="value">A value.</param>
+            <param name="destructure">Determines whether to call the destructor or not.</param>
+            <returns>A disposable that when disposed removes the map from the context.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase.FindType(System.String,System.String)">
+            <summary>
+                Finds a type using a type name and assembly name.
+            </summary>
+            <param name="typeName">The name of the type.</param>
+            <param name="assemblyName">The name of the assembly.</param>
+            <returns>The requested type or null if it was not found.</returns>
+        </member>
+        <member name="M:Binance.Client.Websocket.Logging.LogProviders.LogProviderBase.FindType(System.String,System.Collections.Generic.IReadOnlyList{System.String})">
+            <summary>
+                Finds a type using a type name and a list of assembly names to search.
+            </summary>
+            <param name="typeName">The name of the type.</param>
+            <param name="assemblyNames">A list of assembly names to search.</param>
+            <returns>The request type or null if it was not found.</returns>
+        </member>
+        <member name="T:Binance.Client.Websocket.Logging.LogProviders.LoupeLogProvider.WriteDelegate">
+            <summary>
+                The form of the Loupe Log.Write method we're using
+            </summary>
+        </member>
+        <member name="P:Binance.Client.Websocket.Logging.LogProviders.LoupeLogProvider.ProviderIsAvailableOverride">
+            <summary>
+                Gets or sets a value indicating whether [provider is available override]. Used in tests.
+            </summary>
+            <value>
+                <c>true</c> if [provider is available override]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Binance.Client.Websocket.Logging.Logger">
+            <summary>
+            Logger delegate.
+            </summary>
+            <param name="logLevel">The log level</param>
+            <param name="messageFunc">The message function</param>
+            <param name="exception">The exception</param>
+            <param name="formatParameters">The format parameters</param>
+            <returns>A boolean.</returns>
+        </member>
+    </members>
+</doc>

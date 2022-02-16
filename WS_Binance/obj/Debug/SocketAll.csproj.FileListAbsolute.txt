@@ -1,0 +1,75 @@
+C:\Users\Администратор\Documents\BOT\SocketAll\bin\Debug\SocketAll.exe.config
+C:\Users\Администратор\Documents\BOT\SocketAll\bin\Debug\SocketAll.exe
+C:\Users\Администратор\Documents\BOT\SocketAll\bin\Debug\SocketAll.pdb
+C:\Users\Администратор\Documents\BOT\SocketAll\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Администратор\Documents\BOT\SocketAll\bin\Debug\websocket-sharp.dll
+C:\Users\Администратор\Documents\BOT\SocketAll\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Администратор\Documents\BOT\SocketAll\bin\Debug\websocket-sharp.xml
+C:\Users\Администратор\Documents\BOT\SocketAll\obj\Debug\SocketAll.csprojAssemblyReference.cache
+C:\Users\Администратор\Documents\BOT\SocketAll\obj\Debug\SocketAll.Form1.resources
+C:\Users\Администратор\Documents\BOT\SocketAll\obj\Debug\SocketAll.Properties.Resources.resources
+C:\Users\Администратор\Documents\BOT\SocketAll\obj\Debug\SocketAll.csproj.GenerateResource.cache
+C:\Users\Администратор\Documents\BOT\SocketAll\obj\Debug\SocketAll.csproj.CoreCompileInputs.cache
+C:\Users\Администратор\Documents\BOT\SocketAll\obj\Debug\SocketAll.csproj.CopyComplete
+C:\Users\Администратор\Documents\BOT\SocketAll\obj\Debug\SocketAll.exe
+C:\Users\Администратор\Documents\BOT\SocketAll\obj\Debug\SocketAll.pdb
+D:\Job C#\BOT\SocketAll\bin\Debug\SocketAll.exe.config
+D:\Job C#\BOT\SocketAll\bin\Debug\SocketAll.exe
+D:\Job C#\BOT\SocketAll\bin\Debug\SocketAll.pdb
+D:\Job C#\BOT\SocketAll\bin\Debug\Newtonsoft.Json.dll
+D:\Job C#\BOT\SocketAll\bin\Debug\websocket-sharp.dll
+D:\Job C#\BOT\SocketAll\bin\Debug\Newtonsoft.Json.xml
+D:\Job C#\BOT\SocketAll\bin\Debug\websocket-sharp.xml
+D:\Job C#\BOT\SocketAll\obj\Debug\SocketAll.csproj.AssemblyReference.cache
+D:\Job C#\BOT\SocketAll\obj\Debug\SocketAll.csproj.SuggestedBindingRedirects.cache
+D:\Job C#\BOT\SocketAll\obj\Debug\SocketAll.Form1.resources
+D:\Job C#\BOT\SocketAll\obj\Debug\SocketAll.Properties.Resources.resources
+D:\Job C#\BOT\SocketAll\obj\Debug\SocketAll.csproj.GenerateResource.cache
+D:\Job C#\BOT\SocketAll\obj\Debug\SocketAll.csproj.CoreCompileInputs.cache
+D:\Job C#\BOT\SocketAll\obj\Debug\SocketAll.csproj.CopyComplete
+D:\Job C#\BOT\SocketAll\obj\Debug\SocketAll.exe
+D:\Job C#\BOT\SocketAll\obj\Debug\SocketAll.pdb
+C:\Users\insiderbo\Desktop\BinanceWebSocket\bin\Debug\SocketAll.exe.config
+C:\Users\insiderbo\Desktop\BinanceWebSocket\bin\Debug\SocketAll.exe
+C:\Users\insiderbo\Desktop\BinanceWebSocket\bin\Debug\SocketAll.pdb
+C:\Users\insiderbo\Desktop\BinanceWebSocket\bin\Debug\Newtonsoft.Json.xml
+C:\Users\insiderbo\Desktop\BinanceWebSocket\bin\Debug\websocket-sharp.xml
+C:\Users\insiderbo\Desktop\BinanceWebSocket\obj\Debug\SocketAll.csproj.AssemblyReference.cache
+C:\Users\insiderbo\Desktop\BinanceWebSocket\obj\Debug\SocketAll.csproj.SuggestedBindingRedirects.cache
+C:\Users\insiderbo\Desktop\BinanceWebSocket\obj\Debug\SocketAll.Form1.resources
+C:\Users\insiderbo\Desktop\BinanceWebSocket\obj\Debug\SocketAll.Properties.Resources.resources
+C:\Users\insiderbo\Desktop\BinanceWebSocket\obj\Debug\SocketAll.csproj.GenerateResource.cache
+C:\Users\insiderbo\Desktop\BinanceWebSocket\obj\Debug\SocketAll.csproj.CoreCompileInputs.cache
+C:\Users\insiderbo\Desktop\BinanceWebSocket\obj\Debug\SocketAll.csproj.CopyComplete
+C:\Users\insiderbo\Desktop\BinanceWebSocket\obj\Debug\SocketAll.exe
+C:\Users\insiderbo\Desktop\BinanceWebSocket\obj\Debug\SocketAll.pdb
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\SocketAll.exe.config
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\SocketAll.exe
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\SocketAll.pdb
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\Binance.Client.Websocket.dll
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\Newtonsoft.Json.dll
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\System.Reactive.dll
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\System.Threading.Channels.dll
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\System.ValueTuple.dll
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\websocket-sharp.dll
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\Websocket.Client.dll
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\Binance.Client.Websocket.xml
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\Newtonsoft.Json.xml
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\System.Reactive.xml
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\System.Threading.Channels.xml
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\System.ValueTuple.xml
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\websocket-sharp.xml
+C:\Users\insiderbo\Desktop\WS_Binance\bin\Debug\Websocket.Client.xml
+C:\Users\insiderbo\Desktop\WS_Binance\obj\Debug\SocketAll.csproj.AssemblyReference.cache
+C:\Users\insiderbo\Desktop\WS_Binance\obj\Debug\SocketAll.csproj.SuggestedBindingRedirects.cache
+C:\Users\insiderbo\Desktop\WS_Binance\obj\Debug\SocketAll.Form1.resources
+C:\Users\insiderbo\Desktop\WS_Binance\obj\Debug\SocketAll.Properties.Resources.resources
+C:\Users\insiderbo\Desktop\WS_Binance\obj\Debug\SocketAll.csproj.GenerateResource.cache
+C:\Users\insiderbo\Desktop\WS_Binance\obj\Debug\SocketAll.csproj.CoreCompileInputs.cache
+C:\Users\insiderbo\Desktop\WS_Binance\obj\Debug\SocketAll.csproj.CopyComplete
+C:\Users\insiderbo\Desktop\WS_Binance\obj\Debug\SocketAll.exe
+C:\Users\insiderbo\Desktop\WS_Binance\obj\Debug\SocketAll.pdb
