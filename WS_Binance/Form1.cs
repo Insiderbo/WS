@@ -16,7 +16,7 @@ namespace SocketAll
 {
     public partial class Form1 : Form
     {
-        public readonly string WsEndpoint = "wss://stream.binance.com:9443/stream?streams=ltcbtc@aggTrade/ethbtc@aggTrade";
+        public readonly string WsEndpoint = "wss://fstream.binance.com/stream?streams=btcusdt@depth";//<symbol>@kline_<interval>
         public Form1()
         {
             InitializeComponent();
